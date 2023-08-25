@@ -1,0 +1,38 @@
+ import java.util.Scanner;
+
+public class App {
+
+   public static void main(String[] args) {
+    Scanner sc = new Scanner (System.in);
+
+    System.out.print("Print array size [50]: ");
+    int numbersize = sc.nextInt();
+
+    int []arraynumber = new int[numbersize];
+
+    for (int arraysize = 0; arraysize < numbersize; arraysize=arraysize + 1) {
+        System.out.print("Enter arr" + " [" + (arraysize) + "] " + "Element: ");
+        arraynumber[arraysize] = sc.nextInt();
+    }
+
+    System.out.print("Stored data in array:  ");
+    for (int data = 0; data < arraynumber.length; data=data+1){
+        System.out.print(arraynumber[data] + ",");
+
+    }
+  System.out.println("\nDuplicate Values in the Given array: ");
+        for(int num = 0; num < arraynumber.length; num++) {  
+            for(int duplicate = num + 1; duplicate < arraynumber.length; duplicate++) {  
+                if(arraynumber[num] == arraynumber[duplicate])  
+                    System.out.print(arraynumber[duplicate] + " " );  
+            }
+        }
+    }
+
+        
+    }
+
+
+
+            
+   
