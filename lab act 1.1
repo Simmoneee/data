@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+public class BankApp {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the initial balance for Savings Account: ");
+        double savingsBalance = scanner.nextDouble();
+        SavingsAccount savingsAccount = new SavingsAccount(savingsBalance);
+
+        System.out.print("Enter the initial balance for Current Account: ");
+        double currentBalance = scanner.nextDouble();
+        CurrentAccount currentAccount = new CurrentAccount(currentBalance);
+
+        System.out.print("Enter the deposit amount for Savings Account: ");
+        double savingsDeposit = scanner.nextDouble();
+        savingsAccount.deposit(savingsDeposit);
+
+        System.out.print("Enter the  withdrawal amount for Savings Account: ");
+        double savingsWithdrawal = scanner.nextDouble();
+        savingsAccount.withdraw(savingsWithdrawal);
+
+        System.out.println("Savings Account balance: " + savingsAccount.getBalance());
+
+        System.out.print("Enter the deposit amount for Current Account: ");
+        double currentDeposit = scanner.nextDouble();
+        currentAccount.deposit(currentDeposit);
+
+        System.out.print("Enter the  withdrawal amount for Current Account: ");
+        double currentWithdrawal = scanner.nextDouble();
+        currentAccount.withdraw(currentWithdrawal);
+
+        System.out.println("Current Account balance: " + currentAccount.getBalance());
+
+        scanner.close();
+    }
+}
+
+    abstract class BankAccount {
+    protected double balance;
+
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    public abstract void deposit(double amount);
+
+    public abstract void withdraw(double amount);
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+        class SavingsAccount extends BankAccount {
+        public SavingsAccount(double initialBalance) {
+        super(initialBalance);
+    }
+
+    @Override
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println(amount + " deposited into Savings Account.");
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println(amount + " withdrawn from Savings Account.");
+        } else {
+            System.out.println("Not enough balance or invalid withdrawal amount.");
+        }
+    }
+}
+
+class CurrentAccount extends BankAccount {
+    public CurrentAccount(double initialBalance) {
+        super(initialBalance);
+    }
+
+    @Override
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println(amount + " deposited into Current Account.");
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println(amount + " withdrawn from Current Account.");
+        } else {
+            System.out.println("Not enoguh balance or invalid withdrawal amount.");
+        }
+    }
+}
